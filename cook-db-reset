@@ -1,0 +1,7 @@
+#!/bin/bash
+
+./tools/cook-down
+sudo rm -Rf db/postgres
+./tools/cook-up
+./tools/cook-db
+./tools/cook-seed

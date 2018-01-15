@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#eval $(egrep -v '^#' ./tools/.env | xargs) docker-compose -f tools/docker-compose.yml run api psql postgres://$DB_USER:$DB_PASS@postgres/$DB_NAME
+docker-compose -f tools/docker-compose.yml -p open-business-labs run api psql postgres://open-business-labs:open-business-labs@postgres/open-business-labs

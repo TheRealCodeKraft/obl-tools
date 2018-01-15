@@ -1,0 +1,3 @@
+#!/bin/bash
+
+docker-compose -f tools/docker-compose.yml -p open-business-labs run api rake db:seed

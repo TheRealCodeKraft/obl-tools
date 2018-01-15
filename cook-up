@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#docker-compose -f tools/docker-compose.yml up -d
+docker-compose -f tools/docker-compose.yml -p open-business-labs up $@

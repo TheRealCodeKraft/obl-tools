@@ -1,0 +1,52 @@
+version: '2'
+
+services:
+  postgres:
+    image: 'postgres:9.6-alpine'
+    environment:
+      POSTGRES_USER: 'open-business-labs'
+      POSTGRES_PASSWORD: 'open-business-labs'
+    ports:
+      - '5432:5432'
+    volumes:
+      - '../db/postgres:/var/lib/postgresql/data'
+
+  redis:
+    image: 'redis:3.2-alpine'
+    command: redis-server
+    ports:
+      - '6379:6379'
+    volumes:
+      - '../db/redis:/data'
+      - '../db/redis.conf:/usr/local/etc/redis/redis.conf'
+
+  api:
+    depends_on:
+      - 'postgres'
+      - 'redis'
+    build: ../api/
+    ports:
+      - '3000:3000'
+      - '1025:1025'
+      - '1080:1080'
+    volumes:
+      - '../api:/app'
+    env_file:
+      - '.env'
+
+  frontend:
+    depends_on:
+      - 'api'
+    build: ../frontend/
+    ports: 
+      - '3002:3002'
+    volumes:
+      - '../frontend:/app'
+      - /app/node_modules
+      - '../codekraft-react-frontend:/codekraft/lib'
+    env_file:
+      - '.env'
+
+volumes:
+  redis:
+  postgres:

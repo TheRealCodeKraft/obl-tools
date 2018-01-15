@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#docker-compose up -d --no-deps --build api
+docker-compose -f tools/docker-compose.yml -p open-business-labs run api rm /app/tmp/pids/server.pid
+docker-compose -f tools/docker-compose.yml -p open-business-labs kill api
+docker-compose -f tools/docker-compose.yml -p open-business-labs up -d --no-deps api
