@@ -31,6 +31,7 @@ services:
       - '1080:1080'
     volumes:
       - '../api:/app'
+      - '../shared:/app/public/system/shared'
     env_file:
       - '.env'
 
@@ -44,6 +45,7 @@ services:
       - '../frontend:/app'
       - /app/node_modules
       - '../codekraft-react-frontend:/codekraft/lib'
+      - '../shared:/app/www/shared'
     env_file:
       - '.env'
 
